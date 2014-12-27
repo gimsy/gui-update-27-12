@@ -175,7 +175,7 @@ public:
 	{
 		// added a new item to the list... in order
 		// returns a iterator to the new item
-		return std::list<T*>::insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
+		return this->insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
 	}
 
 };
@@ -198,7 +198,7 @@ public:
 	{
 		return *operator->();
 	}
-	
+
 	operator T*() const
 	{
 		return operator->();
@@ -392,11 +392,11 @@ inline ePtrList<T>::~ePtrList()
 /////////////////// ePtrList sort() /////////////////////////
 template <class T>
 inline void ePtrList<T>::sort()
-{		
+{
 //	Sorts all items in the list.
 // 	The type T must have a operator <.
 	std::list<T*>::sort(typename ePtrList<T>::less());
-}	
+}
 
 /////////////////// ePtrList remove(T*) /////////////////////////
 template <class T>
@@ -420,7 +420,7 @@ inline void ePtrList<T>::remove(T* t)
 			it = std::list<T*>::erase(it);  // remove all other items that equals to t (no delete is called..)
 		else
 			it++;
-			
+
 }
 
 /////////////////// ePtrList singleremove(T*) /////////////////////////
@@ -443,8 +443,8 @@ inline void ePtrList<T>::singleremove(T* t)
 
 /////////////////// ePtrList clear() //////////////////
 template <class T>
-inline void ePtrList<T>::clear()	
-{		
+inline void ePtrList<T>::clear()
+{
 // 	Remove all items from the list
 //	If auto-deletion is enabled, than the list call delete for all items in the list
 	erase(std::list<T*>::begin(), std::list<T*>::end());
@@ -487,7 +487,7 @@ inline void ePtrList<T>::push_front(T* x)
 // Add a new item at the begin of the list.
 // The current item is set to the first item;
 	std::list<T*>::push_front(x);
-	first();	
+	first();
 }
 
 /////////////////// ePtrList take() ////////////////////
@@ -532,7 +532,7 @@ template <class T>
 inline T* ePtrList<T>::current()
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is -1).
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// ePtrList next() ////////////////////
@@ -583,7 +583,7 @@ template <class T>
 inline const T* ePtrList<T>::current() const
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is not valid)
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// const ePtrList next() ////////////////////
@@ -618,7 +618,7 @@ template <class T>
 inline const T* ePtrList<T>::first() const
 {
 // Returns a pointer to the first item in the list and makes this the current list item, or null if the list is empty.
-	return *(cur = begin());	
+	return *(cur = begin());
 }
 
 /////////////////// const ePtrList last() ////////////////////
@@ -645,14 +645,14 @@ template <class T>
 ePtrList<T>::operator bool() const
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
-	return !std::list<T*>::empty();	
+	return !std::list<T*>::empty();
 }
 
 template <class T>
 bool ePtrList<T>::operator!() const
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
-	return std::list<T*>::empty();	
+	return std::list<T*>::empty();
 }
 
 template <class T>
@@ -801,10 +801,10 @@ public:
 		return rbegin();
 	}
 
-	operator const_reverse_iterator() const	
+	operator const_reverse_iterator() const
 	{
 	//	Returns a const_reverse_iterator that equal to rbegin() of the list
-		return rbegin();	
+		return rbegin();
 	}
 
 	std::vector<T>* getVector()
@@ -846,7 +846,7 @@ public:
 	{
 		return *operator->();
 	}
-	
+
 	operator T*() const
 	{
 		return operator->();
@@ -1118,7 +1118,7 @@ inline void eSmartPtrList<T>::push_front(T* x)
 // Add a new item at the begin of the list.
 // The current item is set to the first item;
 	std::list<ePtr<T> >::push_front(x);
-	first();	
+	first();
 }
 
 /////////////////// eSmartPtrList setCurrent(T*) ////////////////////
@@ -1142,7 +1142,7 @@ template <class T>
 inline T* eSmartPtrList<T>::current()
 {
 //	Returns a pointer to the current list item. The current item may be null (implies that the current index is -1).
-	return cur==end() ? 0 : *cur;	
+	return cur==end() ? 0 : *cur;
 }
 
 /////////////////// eSmartPtrList next() ////////////////////

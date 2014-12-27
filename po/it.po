@@ -5,9 +5,9 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 22:11+0100\n"
-"PO-Revision-Date: 2014-01-22 23:31+0100\n"
-"Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
-"Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
+"PO-Revision-Date: 2014-12-27 18:05+0100\n"
+"Last-Translator: opendroid-Team <opendroid2013@gmail.com>\n"
+"Language-Team: www.deroidsat.org <opendroid2013@gmail.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,6 +110,9 @@ msgid ""
 "Select your backup device.\n"
 "Current device: "
 msgstr ""
+"\n"
+"Selezionare il supporto per il backup.\n"
+"Supporto corrente: "
 
 #
 msgid ""
@@ -129,7 +132,7 @@ msgid " (TV)"
 msgstr ""
 
 msgid " and"
-msgstr "e"
+msgstr ""
 
 #
 #, fuzzy
@@ -525,8 +528,6 @@ msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
 msgstr ""
-"Un file di configurazione (%s) è stato modificato da quando è stato installato.\n"
-"Vuoi mantenere le modifiche?"
 
 #
 #, python-format
@@ -607,8 +608,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"La registrazione è stata avviata:\n"
-"%s"
 
 #
 msgid ""
@@ -623,14 +622,14 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "Registrazioni in corso! Prima di poter configurare il motore, è necessario arrestarle!"
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "La registrazione è attualmente in esecuzione. Si prega di interrompere la registrazione prima di provare a eseguire la scansione."
+msgstr ""
 
 #
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Registrazioni in corso! Prima di avviare una ricerca satelliti, è necessario arrestarle!"
 
 msgid "A repeating timer or just once?"
-msgstr "Un timer di ripetizione o solo una volta?"
+msgstr ""
 
 #
 #, python-format
@@ -793,6 +792,7 @@ msgid "Add a new title"
 msgstr "Aggiungere nuovo titolo"
 
 #
+#, fuzzy
 msgid "Add a record timer"
 msgstr "Aggiungi timer di registrazione"
 
@@ -1058,8 +1058,6 @@ msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
 msgstr ""
-"Rimuovere\n"
-"questo backup:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Sei sicuro di voler eliminare tutti i registri selezionati:\n"
@@ -1071,8 +1069,8 @@ msgstr "Sei sicuro di voler eliminare questo registro:\n"
 #, fuzzy
 msgid ""
 "Are you sure you want to delete this:\n"
-msgstr ""
-"Sei sicuro di voler eliminare questo:\n"
+" "
+msgstr "Uscire da questa configurazione guidata?"
 
 #
 msgid "Are you sure you want to exit this wizard?"
@@ -1096,17 +1094,11 @@ msgid ""
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Ripristinare il seguente backup2?\n"
-"\n"
-"%s\n"
-"Al termine del ripristino, il ricevitore verrà riavviato."
 
 msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Ripristinare il backup?\n"
-"Al termine del ripristino, il ricevitore verrà riavviato."
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Sei sicuro di voler salvare la EPG Cache:\n"
@@ -1115,7 +1107,7 @@ msgid "Are you sure you want to send this log:\n"
 msgstr "Sei sicuro di voler inviare questo log:\n"
 
 #
-#, fuzzy,python-format
+#, fuzzy, python-format
 msgid "Are you sure you want to update your %s %s ?"
 msgstr "Uscire da questa configurazione guidata?"
 
@@ -1757,8 +1749,6 @@ msgid ""
 "Checking tuner %d\n"
 "DiSEqC port %s for %s"
 msgstr ""
-"Verifica in corso: tuner %d\n"
-"Porta DiSEqC %s per %s"
 
 msgid "Children/Youth"
 msgstr "Bambini/Giovani"
@@ -2806,8 +2796,6 @@ msgid ""
 "Do you really want to convert the filesystem?\n"
 "You cannot go back!"
 msgstr ""
-"Vuoi davvero convertire il file system?\n" 
-"Non si può tornare indietro!"
 
 #, python-format
 msgid "Do you really want to delete %s ?"
@@ -2836,8 +2824,6 @@ msgid ""
 "Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"Vuoi davvero inizializzare il dispositivo?\n" 
-"Tutti i dati presenti sul disco andranno persi!"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
@@ -2871,15 +2857,11 @@ msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
-"Vuoi installare anche client samba?\n" 
-"Questo permette di montare le condivisioni di Windows su questo dispositivo."
 
 msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-"Vuoi allegare un file di testo per spiegare il registro?\n" 
-"(scegliere 'No' per digitare il messaggio utilizzando la tastiera virtuale.)"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2889,8 +2871,6 @@ msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
-"Vuoi eliminare tutti i file selezionati:\n" 
-"(scegliere 'No' solo eliminare il file selezionato.)"
 
 #
 msgid "Do you want to do a service scan?"
@@ -2940,8 +2920,6 @@ msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
-"Vuoi inviare tutti i file selezionati:\n" 
-"(scegliere 'No' solo inviare il file selezionato.)"
 
 #
 #, fuzzy, python-format
@@ -2987,7 +2965,7 @@ msgstr "Scaricare plugin"
 
 #
 msgid "Downloading"
-msgstr "Sto scaricando..."
+msgstr "Download in corso"
 
 #
 msgid "Downloading plugin information. Please wait..."
@@ -3253,8 +3231,6 @@ msgid ""
 "Error:\n"
 "%s"
 msgstr ""
-"Errore:\n"
-"%s"
 
 #
 #, python-format
@@ -3468,8 +3444,6 @@ msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
 msgstr ""
-"File oscam.conf non trovato. \n" 
-"Si prega di inserire username / password manualmente."
 
 msgid "Filesystem Check"
 msgstr "Verifica filesystem"
@@ -5585,7 +5559,7 @@ msgstr "Percentuale di sinistra"
 #
 #, fuzzy
 msgid "Percentage right"
-msgstr "Precentuale a destra"
+msgstr "Percentuale a destra"
 
 msgid "Perform a complete image backup before updating."
 msgstr "Eseguire un backup completo dell'immagine prima di aggiornare."
@@ -5875,6 +5849,8 @@ msgstr "Configurare il Tuner C."
 msgid "Please set up tuner D"
 msgstr "Configurare il Tuner D."
 
+#
+#, fuzzy
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
@@ -5944,9 +5920,6 @@ msgstr "Elenco in caricamento. Attendere..."
 
 msgid "Plugin Browser"
 msgstr ""
-
-msgid "Downloadable plugins"
-msgstr "Scarica Plugins"
 
 msgid "Plugin details"
 msgstr "Dettaglio Plugin"
@@ -6393,9 +6366,6 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Reflash in corso\n" 
-"Si prega di attendere che si %s %s riavvii\n" 
-"Questa operazione potrebbe richiedere alcuni minuti"
 
 msgid "Refresh every (in hours)"
 msgstr "Aggiorna tutti (in ore)"
@@ -7907,11 +7877,9 @@ msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
 msgstr ""
-"Mi dispiace, la destinazione di backup non è scrivibile.\n" 
-"Selezionare un altro."
 
-msgid "Ordinare"
-msgstr ""
+msgid "Sort"
+msgstr "Ordinare"
 
 msgid "Sort EPG List"
 msgstr "Ordina elenco EPG"
@@ -8283,7 +8251,7 @@ msgstr ""
 "a cura di OpenDroid-Team\n"
 "www.droidsat.org\n"
 "Supporto: www.droidsat.org\n"
-"aggiornamento: 10 luglio 2014"
+"aggiornamento: 27 dicembre 2014"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -8377,8 +8345,6 @@ msgid ""
 "Thank you for using the wizard. Your %s %s is now ready to use.\n"
 "Please press OK to start using your %s %s."
 msgstr ""
-"Grazie per aver utilizzato la procedura guidata. il Tuo %s %s è ora pronto per l'uso.\n" 
-"Premere OK per iniziare a utilizzare il %s %s."
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "L'%s %s legge i dati EPG memorizzati ogni (ore)."
@@ -8390,15 +8356,11 @@ msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Il plugin autotimer non è installato!\n" 
-"Si prega di installarlo."
 
 msgid ""
 "The Cool TV Guide plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"The Cool TV Guide plugin non è installato!\n" 
-"Si prega di installarlo."
 
 #
 #, fuzzy, python-format
@@ -8409,29 +8371,21 @@ msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Il plugin EPGSearch non è installato!\n" 
-"Si prega di installarlo."
 
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
-"Il Filesystem sul tuo Timeshift-dispositivo non supporta collegamenti fisici.\n" 
-"Assicurarsi che sia formattato in EXT2 o EXT3!"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Il plugin IMDb non è installato!\n" 
-"Si prega di installarlo."
 
 msgid ""
 "The MediaPlayer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Il plugin MediaPlayer non è installato!\n" 
-"Si prega di installarlo."
 
 msgid "The PIN code has been changed successfully."
 msgstr "Codice PIN aggiornato correttamente."
@@ -8458,8 +8412,6 @@ msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
 "Make sure you select a valid partition type."
 msgstr ""
-"La directory %s non è una partizione EXT2, EXT3, EXT4 o NFS.\n" 
-"Assicuratevi di aver selezionato un tipo di partizione valido."
 
 #, python-format
 msgid ""
@@ -8839,12 +8791,6 @@ msgid ""
 "If you get an \"enabled\" message:\n"
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
-"Questo test verifica se la scheda LAN è impostato per la configurazione automatica degli indirizzi IP con DHCP.\n" 
-"Se si ottiene un \"disabled\"messaggio:\n" 
-"- Che l'adattatore LAN è configurata per il manuale di configurazione IP\n" 
-"- Verificare thay aver inserito le informazioni IP corretti nella finestra di configurazione dell'adattatore.\n" 
-"Se si ottiene un \"abilitata\" messaggio:\n"
-"-verificare che si disponga di un server DHCP configurato e funzionante nella rete."
 
 #
 #, fuzzy
@@ -8855,8 +8801,6 @@ msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
-"Questo sarà (ri) calcolare tutte le posizioni del vostro rotore e potrà cancellare posizioni precedentemente memorizzate e fine-tuning!\n" 
-"Sei sicuro?"
 
 #
 msgid "Three"
@@ -8966,7 +8910,7 @@ msgid "Timer type"
 msgstr "Tipo timer"
 
 msgid "Timers"
-msgstr "Timer"
+msgstr "Timers"
 
 #
 msgid "Timeshift"
@@ -9024,10 +8968,6 @@ msgid ""
 "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Per aggiornare il firmware del tuo %s %s, attieniti alla seguente procedura:\n" 
-"1) Spegnere il box con l'interruttore posteriore e assicurarsi che la chiavetta USB avviabile è collegata.\n" 
-"2) Accendere e tenere premuto il pulsante sul pannello frontale per 10 secondi.\n" 
-"3) Attendere l'avvio e seguire le istruzioni della procedura guidata."
 
 #
 msgid "Today"
@@ -9318,9 +9258,6 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Aggiornamento in corso\n" 
-"Si prega di attendere che il tuo %s %s si riavvii\n" 
-"Questa operazione potrebbe richiedere alcuni minuti"
 
 #
 msgid "Upgrading"
@@ -9389,6 +9326,8 @@ msgstr "Utilizzare frequenza o il canale"
 msgid "Use individual settings for each directory"
 msgstr "Utilizzare le impostazioni individuali per ogni directory"
 
+#
+#, fuzzy
 msgid "Use interface"
 msgstr "Usare Interfaccia"
 
@@ -9401,6 +9340,7 @@ msgstr "Utilizzare posizione dei sottotitoli DVB originale"
 msgid "Use original teletext position"
 msgstr "Utilizzare posizione televideo originale"
 
+#
 msgid "Use power measurement"
 msgstr "Usare misurazione di potenza"
 
@@ -9422,12 +9362,16 @@ msgstr "Utilizzare l'alternativa o la modalità radio convenzionale."
 msgid "Use the alternative screen"
 msgstr "Utilizzare la schermata alternativa"
 
+#, fuzzy
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Usare NetworkWizard per configurare l'adattatore di rete selezionato"
 
+#
+#, fuzzy
 msgid "Use the network wizard to configure your Network\n"
 msgstr "Usare la configurazione guidata rete\n"
 
+#
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr "Usare i tasti Sù/Giù del telecomando per selezionare un'opzione, poi premere OK."
 
@@ -9440,6 +9384,7 @@ msgstr "Utilizzare queste impostazioni del dispositivo di input?"
 msgid "Use these settings?"
 msgstr "Utilizzare queste Impostazioni?"
 
+#
 msgid "Use this video enhancement settings?"
 msgstr "Usare questa configurazione per il miglioramento immagine?"
 
@@ -9449,6 +9394,7 @@ msgstr "Utilizzare timeshift SeekBar durante il timeshifting?"
 msgid "Use trash can in movielist"
 msgstr "Utilizzare cestino in lista di film"
 
+#
 msgid "Used service scan type"
 msgstr "Tipo ricerca canali in uso"
 
@@ -9458,15 +9404,20 @@ msgstr ""
 msgid "User - bouquets"
 msgstr "User - bouquets"
 
+#
 msgid "User defined"
 msgstr "Definito dall'utente"
 
+#
+#, fuzzy
 msgid "User defined transponder"
 msgstr "Transponder predefinito"
 
 msgid "User interface"
 msgstr ""
 
+#
+#, fuzzy
 msgid "User interface visibility"
 msgstr "Usare l'Interfaccia"
 
@@ -9545,7 +9496,14 @@ msgstr "Anteprima miglioramento immagine"
 msgid "Video enhancement setup"
 msgstr "Configurazione miglioramento immagine"
 
+#
+#, fuzzy
 msgid "Video fine tuning"
+msgstr "Regolazione fine video"
+
+#
+#, fuzzy
+msgid "Video fine-tuning"
 msgstr "Regolazione fine video"
 
 msgid ""
@@ -9563,7 +9521,7 @@ msgstr "Selezione modalità video."
 #
 #, fuzzy, python-format
 msgid "Video mode: %s"
-msgstr "Modalità video: %s"
+msgstr "Selezione modalità video."
 
 msgid "Video output"
 msgstr "Uscita video"
@@ -9628,6 +9586,8 @@ msgstr "Elenco estensioni comunicazione disponibili."
 msgid "View list of available default settings"
 msgstr "Elenco configurazioni predefinite disponibili."
 
+#
+#, fuzzy
 msgid "View list of available display and userinterface extensions."
 msgstr "Elenco estensioni display e interfaccia utente disponibili."
 
@@ -9658,6 +9618,8 @@ msgstr "Elenco estensioni di sistema disponibili."
 msgid "View mode"
 msgstr ""
 
+#
+#, fuzzy
 msgid "View photos..."
 msgstr "Visualizzare foto..."
 
@@ -9668,6 +9630,8 @@ msgstr "Televideo..."
 msgid "View the changes"
 msgstr ""
 
+#
+#, fuzzy
 msgid "View video CD..."
 msgstr "Riprodurre CD video..."
 
@@ -9675,6 +9639,7 @@ msgid "Virtuosso Image Xtreme"
 msgstr ""
 
 #
+#, fuzzy
 msgid "Vix forum user name"
 msgstr "Ricerca canali"
 
@@ -9729,6 +9694,7 @@ msgid "Wake Up"
 msgstr ""
 
 #
+#, fuzzy
 msgid "Wake Up To Standby"
 msgstr "Spegnimento (Deep-Standby)"
 
@@ -9813,6 +9779,7 @@ msgstr ""
 "Benvenuto.\n"
 "\n"
 "Questa configurazione guidata fornirà supporto di base per la configurazione di rete del %s %s e la sua connessione a Internet.\n"
+"\n"
 "Premere OK per iniziare la configurazione della rete."
 
 #
@@ -9826,6 +9793,7 @@ msgstr ""
 "Benvenuto.\n"
 "\n"
 "Questa configurazione guidata fornirà supporto di base per la configurazione di rete del %s %s e la sua connessione a Internet.\n"
+"\n"
 "Premere OK per iniziare la configurazione della rete."
 
 #
@@ -10055,8 +10023,6 @@ msgid ""
 "Write error while recording. Disk full?\n"
 "%s"
 msgstr ""
-"Errore di scrittura durante la registrazione. Disco pieno?\n"
-"%s"
 
 #
 msgid "Write failed!"
@@ -10137,9 +10103,6 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Hai già bootlogo installato,\n" 
-"volete rimuovere\n" 
-"\"%s\"?"
 
 #, python-format
 msgid ""
@@ -10147,9 +10110,6 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Avete già una lista di canali installati,\n" 
-"volete rimuovere\n" 
-"\"%s\"?"
 
 #
 msgid "You can cancel the installation."
@@ -10205,15 +10165,11 @@ msgid ""
 "You have chosen to save the current timeshift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
-"Si è scelto di salvare l'evento timeshift corrente, ma l'evento non ha ancora finito\n" 
-"Cosa vuoi fare?"
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
 "Press MENU, and enter your info, then try again"
 msgstr ""
-"Non avete configurato le tue informazioni utente nella schermata di configurazione\n" 
-"Premere MENU e immettere le tue informazioni, quindi riprovare"
 
 msgid "You have selected no logs to delete."
 msgstr "Avete selezionato alcun log da eliminare."
@@ -10295,8 +10251,6 @@ msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install \"%s\" ?"
 msgstr ""
-"Verrà riavviato tuo %s %s dopo l'installazione del servizio\n" 
-"Pronto per l'installazione \"%s\" ?"
 
 #, python-format
 msgid ""
@@ -10304,17 +10258,12 @@ msgid ""
 "\n"
 "Do you want to install now ?"
 msgstr ""
-"Il tuo %s %s verrà riavviato dopo l'installazione del servizio.\n" 
-"\n" 
-"Vuoi installare adesso?"
 
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-"Verrà riavviato tuo %s %s dopo la rimozione del servizio\n" 
-"Vuoi rimuovere adesso?"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Il vostro STB verrà riavviato dopo aver premuto OK sul telecomando."
@@ -10332,8 +10281,6 @@ msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
-"Il tuo file di configurazione non è ben formato:\n"
-"%s"
 
 msgid "Your current collection will get lost!"
 msgstr "La collezione corrente sarà perduta!"
@@ -10352,9 +10299,6 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Il tuo processor verrà aggiornato\n" 
-"Si prega di attendere che il tuo %s %s si riavvii\n" 
-"Questa operazione potrebbe richiedere alcuni minuti"
 
 #
 msgid ""
@@ -10401,11 +10345,6 @@ msgstr "Tornare al canale sintonizzato in precedenza?"
 
 #
 msgid "Zap back to service before positioner setup?"
-msgstr "Zap torna in servizio prima installazione posizionatore?"
-
-msgid ""
-"Returning to the active channel\n" 
-"before the configuration engine?"
 msgstr ""
 "Ritornare al canale attivo\n"
 "prima della configurazione motore?"
@@ -10946,8 +10885,6 @@ msgid ""
 "has been sent to the ViX beta team.\n"
 "please quote"
 msgstr ""
-"è stato inviato al team Opendroid.\n" 
-"per favore citare"
 
 msgid "height"
 msgstr "quota"
@@ -11729,9 +11666,6 @@ msgid ""
 "\n"
 "A copy has been sent to yourself."
 msgstr ""
-"quando si chiede un'informazione riguardo questo log\n" 
-"\n" 
-"Una copia è stata inviata a te stesso."
 
 msgid "white"
 msgstr "bianco"

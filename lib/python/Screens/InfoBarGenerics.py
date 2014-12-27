@@ -1528,7 +1528,7 @@ class InfoBarEPG:
 		pluginlist = self.getEPGPluginList()
 		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
 		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultEPGType.getValue():
+			if plugin[0] == config.usage.defaultEPGType.Value:
 				return plugin[1]
 		return None
 
@@ -1603,20 +1603,20 @@ class InfoBarEPG:
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if getBoxType().startswith('vu'):
 				self.showDefaultEPG()
-			elif config.plisettings.PLIINFO_mode.Value == "eventview":
+			elif config.plisettings.PLIINFO_mode.value == "eventview":
 				self.openEventView()
-			elif config.plisettings.PLIINFO_mode.Value == "epgpress":
+			elif config.plisettings.PLIINFO_mode.value == "epgpress":
 				self.showDefaultEPG()
-			elif config.plisettings.PLIINFO_mode.Value == "single":
+			elif config.plisettings.PLIINFO_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIINFO_mode.Value == "coolinfoguide" and COOLTVGUIDE:
+			elif config.plisettings.PLIINFO_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
-			elif config.plisettings.PLIINFO_mode.Value == "coolsingleguide" and COOLTVGUIDE:
+			elif config.plisettings.PLIINFO_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
-			elif config.plisettings.PLIINFO_mode.Value == "cooltvguide" and COOLTVGUIDE:
+			elif config.plisettings.PLIINFO_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
-			elif config.plisettings.PLIINFO_mode.Value == "etportal":
+			elif config.plisettings.PLIINFO_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
@@ -2240,12 +2240,12 @@ class InfoBarSeek:
 				self.activity = 0
 			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-					if config.lcd.hdd.getValue() == "1":
+					if config.lcd.hdd.Value == "1":
 						file = open("/proc/stb/lcd/symbol_hdd", "w")
 						file.write('%d' % int(hdd))
 						file.close()
 				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-					if config.lcd.hdd.getValue() == "1":
+					if config.lcd.hdd.Value == "1":
 						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 						file.write('%d' % int(self.activity))
 						file.close() 
@@ -2471,7 +2471,7 @@ class InfoBarSeek:
 		self.doSeekRelative(minutes * 60 * 90000)
 
 	def seekBackSeekbar(self, fwd=False):
-		if not config.seek.baractivation.getValue() == "leftright":
+		if not config.seek.baractivation.value == "leftright":
 			self.session.open(Seekbar, fwd)
 		else:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
@@ -2486,7 +2486,7 @@ class InfoBarSeek:
 			self.unlockShow()
 		else:
 			wantlock = self.seekstate != self.SEEK_STATE_PLAY
-			if config.usage.show_infobar_on_skip.getValue():
+			if config.usage.show_infobar_on_skip.value:
 				if self.lockedBecauseOfSkipping and not wantlock:
 					self.unlockShow()
 					self.lockedBecauseOfSkipping = False
@@ -2641,9 +2641,10 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def _mayShow(self):
 		if self.shown and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshift.ptsSeekPointerSetCurrentPos(self)
-			if config.timeshift.showinfobar.getValue():
+			if config.timeshift.showinfobar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
+		if not self.isSeekable():
 			self.startHideTimer()
 
 	def __hideTimeshiftState(self):
@@ -2651,8 +2652,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self,state):
-		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
+		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,self.pts_currplaying)):
+			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
@@ -2823,7 +2824,7 @@ class InfoBarExtensions:
 					extensionsList.remove(extension)
 				else:
 					extensionsList.remove(extension)
-		if config.usage.sort_extensionslist.getValue():
+		if config.usage.sort_extensionslist.value:
 			list.sort()
 		for x in colorlist:
 			list.append(x)
@@ -3229,7 +3230,7 @@ class InfoBarInstantRecord:
 			self.recording.remove(self.recording[entry])
 
 	def getProgramInfoAndEvent(self, info, name):
-		info["serviceref"] = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		info["serviceref"] = hasattr(self, "SelectedInstantServiceRef") and self.SelectedInstantServiceRef or self.session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		# try to get event info
 		event = None
@@ -4417,11 +4418,10 @@ class InfoBarZoom:
 
 class InfoBarHdmi:
 	def __init__(self):
-		self.hdmi_enabled = False
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineProcModel().startswith('ini-90'):
+		if getMachineBuild() == 'inihdp':
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
@@ -4475,6 +4475,46 @@ class InfoBarHdmi:
 			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
 			self.session.pip.show()
 			self.session.pipshown = True
+		else:
+			curref = self.session.pip.getCurrentService()
+			if curref and curref.type != 8192:
+				self.hdmi_enabled_pip = True
+				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			else:
+				self.hdmi_enabled_pip = False
+				self.session.pipshown = False
+				del self.session.pip
+
+	def HDMIInFull(self):
+		slist = self.servicelist
+		curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if curref and curref.type != 8192:
+			self.hdmi_enabled_full = True
+			self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+		else:
+			self.hdmi_enabled_full = False
+			self.session.nav.playService(slist.servicelist.getCurrent())
+
+	def getHDMIInFullScreen(self):
+		if not self.hdmi_enabled_full:
+			return _("Turn on HDMI-IN Full screen mode")
+		else:
+			return _("Turn off HDMI-IN Full screen mode")
+	      
+	def getHDMIInPiPScreen(self):
+		if not self.hdmi_enabled_pip:
+			return _("Turn on HDMI-IN PiP mode")
+		else:
+			return _("Turn off HDMI-IN PiP mode")
+
+	def HDMIInPiP(self):
+		if not hasattr(self.session, 'pip') and not self.session.pipshown:
+			self.hdmi_enabled_pip = True
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			self.session.pip.show()
+			self.session.pipshown = True
+			self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 		else:
 			curref = self.session.pip.getCurrentService()
 			if curref and curref.type != 8192:

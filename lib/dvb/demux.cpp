@@ -158,7 +158,7 @@ RESULT eDVBDemux::getSTC(pts_t &pts, int num)
 RESULT eDVBDemux::flush()
 {
 	// FIXME: implement flushing the PVR queue here.
-	
+
 	m_event(evtFlush);
 	return 0;
 }
@@ -198,7 +198,7 @@ void eDVBSectionReader::data(int)
 eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res): demux(demux), active(0)
 {
 	fd = demux->openDemux();
-	
+
 	if (fd >= 0)
 	{
 		notifier=eSocketNotifier::create(context, fd, eSocketNotifier::Read, false);
@@ -680,7 +680,7 @@ RESULT eDVBTSRecorder::start()
 
 	if (m_running)
 		return -1;
-	
+
 	if (m_target_fd == -1)
 		return -2;
 
@@ -691,7 +691,7 @@ RESULT eDVBTSRecorder::start()
 	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", m_demux->adapter, m_demux->demux);
 
 	m_source_fd = ::open(filename, O_RDONLY);
-	
+
 	if (m_source_fd < 0)
 	{
 		eDebug("FAILED to open demux (%s) in ts recoder (%m)", filename);

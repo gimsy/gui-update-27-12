@@ -433,6 +433,56 @@ class AutoVideoMode(Screen):
 						write_mode = multi_videomode
 					else:
 						write_mode = config_mode+new_rate
+
+			# workaround for bug, see http://www.opena.tv/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
+			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
+			# always use a fixed resolution and correct rate (e.g. 1080p24/p50/p60 for all other videos
+			if config.av.smart1080p.value != 'false':
+				print "DEBUG VIDEOMODE/ smart1080p enabled"
+				ref = self.session.nav.getCurrentlyPlayingServiceReference()
+				if ref is not None:
+					try:
+						mypath = ref.getPath()
+					except:
+						mypath = ''
+				else:
+					mypath = ''
+				if new_rate == 'multi':
+					# no frame rate information available, check if filename (or directory name) contains a hint
+					# (allow user to force a frame rate this way):
+					if   (mypath.find('p24.') >= 0) or (mypath.find('24p.') >= 0):
+						new_rate = '24'
+					elif (mypath.find('p25.') >= 0) or (mypath.find('25p.') >= 0):
+						new_rate = '25'
+					elif (mypath.find('p30.') >= 0) or (mypath.find('30p.') >= 0):
+						new_rate = '30'
+					elif (mypath.find('p50.') >= 0) or (mypath.find('50p.') >= 0):
+						new_rate = '50'
+					elif (mypath.find('p60.') >= 0) or (mypath.find('60p.') >= 0):
+						new_rate = '60'
+					else:
+						new_rate = '' # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
+				if mypath != '':
+					if mypath.endswith('.ts'):
+						print "DEBUG VIDEOMODE/ playing .ts file"
+						new_rate = '50' # for .ts files
+					else:
+						print "DEBUG VIDEOMODE/ playing other (non .ts) file"
+						# new_rate from above for all other videos
+				else:
+					print "DEBUG VIDEOMODE/ no path or no service reference, presumably live TV"
+					new_rate = '50' # for TV / or no service reference, then stay at 1080p50
+				
+				new_rate = new_rate.replace('25', '50')
+				new_rate = new_rate.replace('30', '60')
+				
+				if  (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'): # for compatibility with old ConfigEnableDisable
+					write_mode = '1080p' + new_rate
+				elif config.av.smart1080p.value == '1080i50':
+					write_mode = '1080i' + new_rate
+				elif config.av.smart1080p.value == '720p50':
+					write_mode = '720p' + new_rate
+
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':

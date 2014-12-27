@@ -77,7 +77,7 @@ class HdmiCec:
 		eHdmiCEC.getInstance().setFixedPhysicalAddress(int(float.fromhex(hexstring)))
 
 	def sendMessage(self, address, message):
-		if config.hdmicec.enabled.getValue():
+		if config.hdmicec.enabled.value:
 			cmd = 0
 			data = ''
 			if message == "wakeup":

@@ -230,11 +230,13 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self["config"].l.setList(self.list)
 
 	def newConfig(self):
+		self.setTextKeyBlue()
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
-					 self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.commandOrder, self.showAdditionalMotorOptions,
+					 self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -533,14 +535,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.stopService()
 		ConfigListScreen.__init__(self, self.list)
 
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Save"))
+		self["key_red"] = Label(_("Close"))
+		self["key_green"] = Label(_("Save"))
+		self["key_yellow"] = Label(_("Configuration mode"))
+		self["key_blue"] = Label()
 
 		self["actions"] = ActionMap(["SetupActions", "SatlistShortcutAction", "ColorActions"],
 		{
-			"ok": self.keySave,
+			"ok": self.keyOk,
 			"save": self.keySave,
 			"cancel": self.keyCancel,
+			"changetype": self.changeConfigurationMode,
 			"nothingconnected": self.nothingConnectedShortcut,
 			"red": self.keyCancel,
 			"green": self.keySave,
@@ -555,6 +560,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		self.newConfig()
+
+	def setTextKeyBlue(self):
+		self["key_blue"].setText("")
+		if self["config"].isChanged():
+			self["key_blue"].setText(_("Set default"))
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
@@ -591,10 +601,19 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.saveAll()
 		self.restoreService(_("Zap back to service before tuner setup?"))
 
+	def changeConfigurationMode(self):
+		if self.configMode:
+			self.nimConfig.configMode.selectNext()
+			self["config"].invalidate(self.configMode)
+			self.setTextKeyBlue()
+			self.createSetup()
+
 	def nothingConnectedShortcut(self):
-		if type(self["config"].getCurrent()[1]) is ConfigSatlist:
-			self["config"].getCurrent()[1].setValue("3601")
-			self["config"].invalidateCurrent()
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].cancel()
+			self.setTextKeyBlue()
+			self.createSetup()
 
 class NimSelection(Screen):
 	def __init__(self, session):
@@ -690,3 +709,71 @@ class NimSelection(Screen):
 				self.list.append((slotid, x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
 		self["nimlist"].updateList(self.list)
+
+class SelectSatsEntryScreen(Screen):
+	skin = """
+		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
+			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" /> 
+			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" /> 
+			<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+			<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+			<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="list" position="10,40" size="540,330" scrollbarMode="showNever" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphatest="on" />
+			<widget name="hint" position="10,380" size="540,25" font="Regular;19" halign="center" transparent="1" />
+		</screen>"""
+	def __init__(self, session, userSatlist=[]):
+		Screen.__init__(self, session)
+		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = Button(_("Save"))
+		self["key_yellow"] = Button(_("Sort by"))
+		self["key_blue"] = Button(_("Select all"))
+		self["hint"] = Label(_("Press OK to toggle the selection"))
+		SatList = []
+		for sat in nimmanager.getSatList():
+			selected = False
+			if isinstance(userSatlist, str) and str(sat[0]) in userSatlist:
+				selected = True
+			SatList.append((sat[0], sat[1], sat[2], selected))
+		sat_list = [SelectionEntryComponent(x[1], x[0], x[2], x[3]) for x in SatList]
+		self["list"] = SelectionList(sat_list, enableWrapAround=True)
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		{
+			"red": self.cancel,
+			"green": self.save,
+			"yellow": self.sortBy,
+			"blue": self["list"].toggleAllSelection,
+			"save": self.save,
+			"cancel": self.cancel,
+			"ok": self["list"].toggleSelection,
+		}, -2)
+		self.setTitle(_("Select satellites"))
+
+	def save(self):
+		val = [x[0][1] for x in self["list"].list if x[0][3]]
+		self.close(str(val))
+
+	def cancel(self):
+		self.close(None)
+
+	def sortBy(self):
+		lst = self["list"].list
+		if len(lst) > 1:
+			menu = [(_("Reverse list"), "2"), (_("Standart list"), "1")]
+			connected_sat = [x[0][1] for x in lst if x[0][3]]
+			if len(connected_sat) > 0:
+				menu.insert(0,(_("Connected satellites"), "3"))
+			def sortAction(choice):
+				if choice:
+					reverse_flag = False
+					sort_type = int(choice[1])
+					if choice[1] == "2":
+						sort_type = reverse_flag = 1
+					elif choice[1] == "3":
+						reverse_flag = not reverse_flag
+					self["list"].sort(sortType=sort_type, flag=reverse_flag)
+					self["list"].moveToIndex(0)
+			self.session.openWithCallback(sortAction, ChoiceBox, title= _("Select sort method:"), list=menu)

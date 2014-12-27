@@ -249,7 +249,7 @@ class UpdatePlugin(Screen):
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
 				try:
-					config.softwareupdate.updateisunstable.setValue(urlopen("http://www.droidsat.org/status").read())
+					config.softwareupdate.updateisunstable.setValue(urlopen("http://www.droidsat.org/feeds/status").read())
 				except:
 					config.softwareupdate.updateisunstable.setValue('1')
 				socket.setdefaulttimeout(currentTimeoutDefault)

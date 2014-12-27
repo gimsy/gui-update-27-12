@@ -111,7 +111,7 @@ class LCD:
 			f = open("/proc/stb/lcd/show_symbols", "w")
 			f.write(value)
 			f.close()
-		if config.lcd.mode.getValue() == "0":
+		if config.lcd.mode.value == "0":
 			if fileExists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")

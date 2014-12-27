@@ -163,7 +163,7 @@ struct eDVBChannelID
 		}
 		return 0;
 	}
-	eDVBChannelID(eDVBNamespace dvbnamespace, eTransportStreamID tsid, eOriginalNetworkID onid): 
+	eDVBChannelID(eDVBNamespace dvbnamespace, eTransportStreamID tsid, eOriginalNetworkID onid):
 			dvbnamespace(dvbnamespace), transport_stream_id(tsid), original_network_id(onid)
 	{
 	}
@@ -223,14 +223,14 @@ struct eServiceReferenceDVB: public eServiceReference
 		setServiceID(service_id);
 		setServiceType(service_type);
 	}
-	
+
 	void set(const eDVBChannelID &chid)
 	{
 		setDVBNamespace(chid.dvbnamespace);
 		setOriginalNetworkID(chid.original_network_id);
 		setTransportStreamID(chid.transport_stream_id);
 	}
-	
+
 	void getChannelID(eDVBChannelID &chid) const
 	{
 		chid = eDVBChannelID(getDVBNamespace(), getTransportStreamID(), getOriginalNetworkID());
@@ -477,6 +477,7 @@ public:
 	virtual int getTransmissionMode() const = 0;
 	virtual int getGuardInterval() const = 0;
 	virtual int getHierarchyInformation() const = 0;
+	virtual int getPlpId() const = 0;
 };
 
 class iDVBFrontendData: public iDVBFrontend_ENUMS, public iObject

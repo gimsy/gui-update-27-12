@@ -989,7 +989,7 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 }
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
-	: m_demux(demux), 
+	: m_demux(demux),
 		m_vpid(-1), m_vtype(-1), m_apid(-1), m_atype(-1), m_pcrpid(-1), m_textpid(-1),
 		m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eTimer::create(eApp))
 {
@@ -1107,7 +1107,7 @@ RESULT eTSMPEGDecoder::play()
 	{
 		if (!m_changed)
 			return 0;
-	} else  
+	} else
 	{
 		m_state = statePlay;
 		m_changed |= changeState;

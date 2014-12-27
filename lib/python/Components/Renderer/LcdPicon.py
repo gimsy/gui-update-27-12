@@ -3,7 +3,6 @@ from enigma import ePixmap
 from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 import os
 
-
 class LcdPicon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -32,7 +31,6 @@ class LcdPicon(Renderer):
 		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
-
 
 	def changed(self, what):
 		if self.instance:

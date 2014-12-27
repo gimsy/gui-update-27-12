@@ -1,8 +1,6 @@
 #ifndef __DVB_STREAMSERVER_H_
 #define __DVB_STREAMSERVER_H_
 
-#include <vector>
-
 #include <lib/network/serversocket.h>
 #include <lib/service/servicedvbstream.h>
 #include <lib/nav/core.h>

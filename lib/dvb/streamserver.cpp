@@ -198,15 +198,6 @@ void eStreamClient::notifier(int what)
 						}
 					}
 				}
-				if (!running)
-				{
-					const char *reply = "HTTP/1.0 400 Bad Request\r\n\r\n";
-					writeAll(streamFd, reply, strlen(reply));
-					rsn->stop();
-					parent->connectionLost(this);
-					return;
-				}
-				request.clear();
 			}
 		}
 	}

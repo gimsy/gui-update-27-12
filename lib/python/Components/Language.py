@@ -157,7 +157,6 @@ class Language:
 			print"Delete all lang except ", lang
 			ll = os.listdir(LPATH)
 			for x in ll:
-			
 				if len(x) > 2:
 					if x != lang:
 						x = x.lower()

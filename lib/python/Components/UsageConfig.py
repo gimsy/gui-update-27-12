@@ -253,6 +253,10 @@ def InitUsageConfig():
 					("2", _("Bouquet List"))])
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices = [
 					("0", _("Just change channels")),
+					("1", _("Channel List")),
+					("2", _("Just change channels revert"))])
+	config.usage.leftrightbutton_mode = ConfigSelection(default="0", choices = [
+					("0", _("Just change channels")),
 					("1", _("Channel List"))])
 	config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("InfoBar")),
@@ -457,6 +461,11 @@ def InitUsageConfig():
 				(eEnv.resolve("${datadir}/enigma2/keymap.u80"), _("U80 keymap - keymap.u80"))])
 
 	config.network = ConfigSubsection()
+	if SystemInfo["WakeOnLAN"]:
+		def wakeOnLANChanged(configElement):
+			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+		config.network.wol = ConfigYesNo(default = False)
+		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = False)
 	config.network.NFS_autostart = ConfigYesNo(default = False)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
@@ -487,6 +496,8 @@ def InitUsageConfig():
 	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")),("savetimeshift", _("Save and stop")),("savetimeshiftandrecord", _("Save and record")),("noSave", _("Don't save"))], "askuser")
 	config.timeshift.autorecord = ConfigYesNo(default = False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
+	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min = 1, max = 999, stepwidth = 1, default = 12, wraparound = True)
+	config.timeshift.deleteAfterZap = ConfigYesNo(default = True)
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
@@ -720,7 +731,8 @@ def InitUsageConfig():
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
 					("eventview", _("Show Eventview")),
-					("cooltvguide", _("Show CoolTVGuide"))])
+					("cooltvguide", _("Show CoolTVGuide")),
+					("etportal", _("Show EtPortal"))])
 		config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
@@ -739,6 +751,7 @@ def InitUsageConfig():
 					("cooltvguide", _("Show CoolTVGuide")),
 					("emc", _("Show Enhanced Movie Center")),
 					("mediaportal", _("Show Media Portal")),
+					("dreamplex", _("Show DreamPlex")),
 					("etportal", _("Show EtPortal"))])
 	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
