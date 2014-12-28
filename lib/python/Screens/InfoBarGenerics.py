@@ -1108,6 +1108,7 @@ class InfoBarChannelSelection:
 		elif config.usage.updownbutton_mode.Value == "1":
 			self.zapUp()
 		elif config.usage.updownbutton_mode.value == "1":
+			self.switchChannelUp()
 
 	def DownPressed(self):
 		if config.usage.updownbutton_mode.value == "0":
