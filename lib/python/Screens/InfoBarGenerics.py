@@ -1075,7 +1075,6 @@ class InfoBarChannelSelection:
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
-				"useBookmark": (self.useBookmark, _("Use function assigned to bookmark button")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
 				"LeftPressed": self.LeftPressed,
@@ -1093,28 +1092,24 @@ class InfoBarChannelSelection:
 		self.openServiceList()
 
 	def LeftPressed(self):
-		if config.plisettings.InfoBarEpg_mode.Value == "3":
+		if config.plisettings.InfoBarEpg_mode.value == "3":
 			self.openInfoBarEPG()
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.plisettings.InfoBarEpg_mode.Value == "3":
+		if config.plisettings.InfoBarEpg_mode.value == "3":
 			self.openInfoBarEPG()
 			self.zapDown()
 
 	def UpPressed(self):
 		if config.usage.updownbutton_mode.value == "0":
 			self.zapDown()
-		elif config.usage.updownbutton_mode.Value == "1":
-			self.zapUp()
 		elif config.usage.updownbutton_mode.value == "1":
 			self.switchChannelUp()
 
 	def DownPressed(self):
 		if config.usage.updownbutton_mode.value == "0":
 			self.zapUp()
-		if config.usage.updownbutton_mode.value == "2":
-			self.zapDown()
 		elif config.usage.updownbutton_mode.value == "1":
 			self.switchChannelDown()
 
@@ -1172,8 +1167,8 @@ class InfoBarChannelSelection:
 
 	def switchChannelUp(self):
 		if not self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.Value:
-				if "keep" not in config.usage.servicelist_cursor_behavior.Value:
+			if not config.usage.show_bouquetalways.value:
+				if "keep" not in config.usage.servicelist_cursor_behavior.value:
 					self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
 			else:
@@ -1190,8 +1185,8 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		if not self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.Value:
-				if "keep" not in config.usage.servicelist_cursor_behavior.Value:
+			if not config.usage.show_bouquetalways.value:
+				if "keep" not in config.usage.servicelist_cursor_behavior.value:
 					self.servicelist.moveDown()
 				self.session.execDialog(self.servicelist)
 			else:
@@ -1529,7 +1524,7 @@ class InfoBarEPG:
 		pluginlist = self.getEPGPluginList()
 		config.usage.defaultEPGType=ConfigSelection(default = "None", choices = pluginlist)
 		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultEPGType.Value:
+			if plugin[0] == config.usage.defaultEPGType.value:
 				return plugin[1]
 		return None
 
@@ -1595,7 +1590,7 @@ class InfoBarEPG:
 
 	def RedPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if config.usage.defaultEPGType.Value == "Graphical EPG" and config.usage.defaultEPGType.Value == None:
+			if config.usage.defaultEPGType.value != _("Graphical EPG") and config.usage.defaultEPGType.value != _("None"):
 					self.openGraphEPG()
 			else:
 				self.openSingleServiceEPG()
@@ -1642,7 +1637,7 @@ class InfoBarEPG:
 			elif config.plisettings.PLIEPG_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
-			elif config.plisettings.PLIEPG_mode.Value == "eventview":
+			elif config.plisettings.PLIEPG_mode.value == "eventview":
 				self.openEventView()
 			else:
 				self.openSingleServiceEPG()
@@ -2241,12 +2236,12 @@ class InfoBarSeek:
 				self.activity = 0
 			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-					if config.lcd.hdd.Value == "1":
+					if config.lcd.hdd.value == "1":
 						file = open("/proc/stb/lcd/symbol_hdd", "w")
 						file.write('%d' % int(hdd))
 						file.close()
 				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-					if config.lcd.hdd.Value == "1":
+					if config.lcd.hdd.value == "1":
 						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 						file.write('%d' % int(self.activity))
 						file.close() 
@@ -2909,7 +2904,7 @@ class InfoBarExtensions:
 			self.autotimer.parseEPG()
 
 		# Start autopoller again if wanted
-		if config.plugins.autotimer.autopoll.getValue():
+		if config.plugins.autotimer.autopoll.value:
 			if self.autopoller is None:
 				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 				self.autopoller = AutoPoller()
@@ -3162,7 +3157,7 @@ class InfoBarINFOpanel:
 				for x in self.onHBBTVActivation:
 					x()
 					
-			elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
+			elif config.plugins.infopanel_redpanel.enabled.value == True:
 				try:
 					from Plugins.Extensions.Infopanel.plugin import Infopanel
 					self.session.open(Infopanel, services = self.servicelist)
@@ -3171,7 +3166,7 @@ class InfoBarINFOpanel:
 			else:
 				self.instantRecord()		
 		
-		elif config.plugins.infopanel_redpanel.enabled.getValue() == True:
+		elif config.plugins.infopanel_redpanel.enabled.value == True:
 			try:
 				from Plugins.Extensions.Infopanel.plugin import Infopanel
 				self.session.open(Infopanel, services = self.servicelist)
@@ -3181,7 +3176,7 @@ class InfoBarINFOpanel:
 			self.instantRecord()
 		
 	def softcamPanel(self):
-		if config.plugins.infopanel_redpanel.enabledlong.getValue() == True:
+		if config.plugins.infopanel_redpanel.enabledlong.value == True:
 			try:
 				from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
 				self.session.open(SoftcamPanel)
@@ -3493,9 +3488,9 @@ class InfoBarAudioSelection:
 			if config.av.downmix_ac3.value:
 				message = _("Dobly Digital downmix is now") + " " + _("disabled")
 				print '[Audio] Dobly Digital downmix is now disabled'
-				config.av.downmix_ac3.setValue(False)
+				config.av.downmix_ac3.setvalue(False)
 			else:
-				config.av.downmix_ac3.setValue(True)
+				config.av.downmix_ac3.setvalue(True)
 				message = _("Dobly Digital downmix is now") + " " + _("enabled")
 				print '[Audio] Dobly Digital downmix is now enabled'
 			Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")

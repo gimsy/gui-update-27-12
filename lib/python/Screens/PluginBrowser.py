@@ -251,9 +251,9 @@ class PluginDownloadBrowser(Screen):
 	def createPluginFilter(self):
 		#Create Plugin Filter
 		self.PLUGIN_PREFIX2 = []
-		if config.pluginfilter.opendroid.Value:
+		if config.pluginfilter.opendroid.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'opendroid')
-		if config.pluginfilter.po.Value:
+		if config.pluginfilter.po.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'po')
 		if config.pluginfilter.src.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'src')
